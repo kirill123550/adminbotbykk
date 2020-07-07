@@ -36,13 +36,13 @@ async def on_message( message ):
 
 # Clear message
 @client.command( pass_context = True )
-@commands.has_permissions( administrator = True )
+@commands.has_permissions( manage_messages = True )
 async def clear( ctx, amount = 100 ):
     await ctx.channel.purge( limit = amount )
 
 # Kick command
 @client.command( pass_context = True )
-@commands.has_permissions( administrator = True )
+@commands.has_permissions( kick_members = True )
 async def kick( ctx, member: discord.Member, *, reason = 'Kicked user reason for administration' ):
     emb = discord.Embed( title = 'Kick', colour = discord.Color.red() )
     await ctx.channel.purge( limit = 1 )
@@ -57,7 +57,7 @@ async def kick( ctx, member: discord.Member, *, reason = 'Kicked user reason for
 
 # Ban
 @client.command( pass_context = True )
-@commands.has_permissions( administrator = True )
+@commands.has_permissions( ban_members = True )
 async def ban( ctx, member: discord.Member, *, reason = 'Banned user reason for administration' ):
     emb = discord.Embed( title = 'Ban', colour = discord.Color.red() )
     await ctx.channel.purge( limit = 1 )
@@ -72,7 +72,7 @@ async def ban( ctx, member: discord.Member, *, reason = 'Banned user reason for 
 
 # Unban
 @client.command( pass_context = True )
-@commands.has_permissions( administrator = True )
+@commands.has_permissions( ban_members = True )
 async def unban( ctx, *, member ):
 
     await ctx.channel.purge( limit = 1 )
