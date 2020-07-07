@@ -1,4 +1,4 @@
-import discord, datetime
+import discord, datetime, nekos
 from discord.ext import commands
 
 PREFIX = '-'
@@ -113,6 +113,7 @@ async  def help( ctx ):
     emb.add_field( name = '{}test_enb'.format( PREFIX ), value = 'Сам перейди и узнаешь' )
     emb.add_field( name = '{}send_a'.format( PREFIX ), value = 'Просто напиши  :)' )
     emb.add_field( name = '{}user'.format( PREFIX ), value = 'Информация о игроке' )
+    emb.add_field( name = '{}avatar'.format( PREFIX ), value = 'Рандом аниме аватар' )
 
     await ctx.send( embed = emb )
 
@@ -160,6 +161,16 @@ async def ad( ctx, arg ):
     emb = discord.Embed(title='Advert', colour = 0x1555bd)
     emb.add_field(name='Объявление!!', value = f'{ arg }' )
     await ctx.send(embed = emb)
+
+@client.command()
+async def avatar(ctx):
+    emb = discord.Embed(description= 'Вот подобраная Вам аватарка.', color=0x6fdb9e)
+    emb.set_image(url=nekos.img('avatar'))
+    await ctx.send(embed=emb)
+
+
+
+
 
 TOKEN = open( 'token.bkl', 'r' ).readline()
 
