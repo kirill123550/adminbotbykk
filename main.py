@@ -16,7 +16,7 @@ answer_cmd = [ '-инфа', '-инфа о сервере', '-info', '-informatio
 async def on_ready():
     print( 'Бот работает' )
 
-    await client.change_presence( status = discord.Status.online, activity = discord.Game( 'AdminBot by kirill_kochurov' ) )
+    await client.change_presence( status = discord.Status.online, activity = discord.Game( 'https://kirill123550.github.io/bot/' ) )
 
 @client.event
 async def on_command_error( ctx, error ):
@@ -151,6 +151,14 @@ async def __userinfo(ctx, member: discord.Member):
     emb.add_field(name='Присоеденился к Discord', value=member.created_at.strftime("%Y.%m.%d %H:%M:%S"))
     emb.add_field(name='Роли', value=role_list)
     emb.set_footer(text='Вызвал команду: {}'.format(ctx.author.name), icon_url=ctx.author.avatar_url)
+    await ctx.send(embed = emb)
+
+@client.command(  )
+@commands.has_permissions( manage_messages = True )
+async def ad( ctx, arg ):
+    await ctx.channel.purge( limit = 1 )
+    emb = discord.Embed(title='Advert', colour = 0x1555bd)
+    emb.add_field(name='Объявление!!', value = f'{ arg }' )
     await ctx.send(embed = emb)
 
 TOKEN = open( 'token.bkl', 'r' ).readline()
