@@ -112,6 +112,7 @@ async  def help( ctx ):
     emb.add_field( name = '{}unban'.format( PREFIX ), value = 'Разбан юзера' )
     emb.add_field( name = '{}test_enb'.format( PREFIX ), value = 'Сам перейди и узнаешь' )
     emb.add_field( name = '{}send_a'.format( PREFIX ), value = 'Просто напиши  :)' )
+    emb.add_field( name = '{}user'.format( PREFIX ), value = 'Информация о игроке' )
 
     await ctx.send( embed = emb )
 
@@ -133,6 +134,24 @@ async def send_a( ctx ):
 async def send_m( ctx, member: discord.Member, arg ):
     await ctx.channel.purge( limit = 1 )
     await member.send( f'{ member.name }, { arg }' )
+
+@client.command(aliases=['юзер', 'юзеринфо', 'user'])
+async def __userinfo(ctx, member: discord.Member):
+    roles = member.roles
+    role_list = ""
+    for role in roles:
+        role_list += f"<@&{role.id}> "
+    emb = discord.Embed(title=f'Информация о пользователе {member}', colour = 0x179c87)
+    emb.set_thumbnail(url=member.avatar_url)
+    emb.add_field(name='ID', value=member.id)
+    emb.add_field(name='Ник', value=member.name)
+    emb.add_field(name='Высшая роль', value=member.top_role)
+    emb.add_field(name='Дискриминатор', value=member.discriminator)
+    emb.add_field(name='Присоеденился к серверу', value=member.joined_at.strftime('%Y.%m.%d \n %H:%M:%S'))
+    emb.add_field(name='Присоеденился к Discord', value=member.created_at.strftime("%Y.%m.%d %H:%M:%S"))
+    emb.add_field(name='Роли', value=role_list)
+    emb.set_footer(text='Вызвал команду: {}'.format(ctx.author.name), icon_url=ctx.author.avatar_url)
+    await ctx.send(embed = emb)
 
 TOKEN = open( 'token.bkl', 'r' ).readline()
 
