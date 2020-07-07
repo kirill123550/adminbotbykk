@@ -16,7 +16,7 @@ answer_cmd = [ '-инфа', '-инфа о сервере', '-info', '-informatio
 async def on_ready():
     print( 'Бот работает' )
 
-    await client.change_presence( status = discord.Status.online, activity = discord.Game( 'https://kirill123550.github.io/bot/' ) )
+    await client.change_presence( status = discord.Status.online, activity = discord.Game( 'http://bot.botbukkin.tk/bot/' ) )
 
 @client.event
 async def on_command_error( ctx, error ):
