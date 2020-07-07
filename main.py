@@ -100,15 +100,18 @@ async def unban( ctx, *, member ):
 
 # Command help
 @client.command( pass_context = True )
-@commands.has_permissions( administrator = True )
 async  def help( ctx ):
     await ctx.channel.purge( limit = 1 )
-    emb = discord.Embed( title = 'Навигация по командам' )
+    emb = discord.Embed( title = 'Навигация по командам', colour = discord.Color.green() )
 
+    emb.set_author( name = client.user.name, icon_url = client.user.avatar_url )
+    emb.set_footer( text = ctx.author.name, icon_url = ctx.author.avatar_url )
     emb.add_field( name = '{}clear'.format( PREFIX ), value = 'Отчиска чата' )
     emb.add_field( name = '{}kick'.format( PREFIX ), value = 'Кик юзера' )
     emb.add_field( name = '{}ban'.format( PREFIX ), value = 'Бан юзера' )
     emb.add_field( name = '{}unban'.format( PREFIX ), value = 'Разбан юзера' )
+    emb.add_field( name = '{}test_enb'.format( PREFIX ), value = 'Сам перейди и узнаешь' )
+    emb.add_field( name = '{}send_a'.format( PREFIX ), value = 'Просто напиши  :)' )
 
     await ctx.send( embed = emb )
 
