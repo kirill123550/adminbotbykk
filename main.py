@@ -1,4 +1,4 @@
-import discord, datetime, nekos
+import discord, datetime, nekos, random
 from discord.ext import commands
 
 PREFIX = '-'
@@ -168,10 +168,15 @@ async def avatar(ctx):
     emb.set_image(url=nekos.img('avatar'))
     await ctx.send(embed=emb)
 
-
-
+@client.command()
+async def roll(ctx):
+    a = 1
+    b = 100
+    rand = random.randint(a, b)
+    await ctx.send(str(rand))
+    emb = discord.Embed(title='Random', colour = 0x1555bd)
+    emb.add_field(name='Random Int', value = f'Выпало число: { rand }' )
 
 
 TOKEN = open( 'token.bkl', 'r' ).readline()
-
 client.run( TOKEN )
