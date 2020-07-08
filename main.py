@@ -173,9 +173,9 @@ async def roll(ctx):
     a = 1
     b = 100
     rand = random.randint(a, b)
-    await ctx.send(str(rand))
     emb = discord.Embed(title='Random', colour = 0x1555bd)
     emb.add_field(name='Random Int', value = f'Выпало число: { rand }' )
+    await ctx.send(embed = emb)
 
 
 TOKEN = open( 'token.bkl', 'r' ).readline()
